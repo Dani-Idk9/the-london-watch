@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es" class="bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Verdad Oficial - Edición 2013 - Próximas a ser eliminadas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,500;0,700;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Chakra Petch', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            950: '#0a0f1a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            color: #1e293b;
+        }
+        .editorial-border {
+            border-color: #000000; 
+        }
+        .article-card {
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            background-color: rgba(241, 245, 249, 0.9);
+            box-shadow: inset 4px 0 0 0 #39ADFD;
+        }
+        .tech-toggle {
+            appearance: none;
+            width: 2.25rem;
+            height: 1.15rem;
+            background-color: #39ADFD;
+            border-radius: 9999px;
+            position: relative;
+            outline: none;
+            border: 1px solid #1e5881;
+            opacity: 0.7;
+        }
+        .tech-toggle::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 1rem;
+            height: 1rem;
+            background-color: #ffffff;
+            border-radius: 50%;
+            transform: translateX(1.1rem);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .first-letter-drop::first-letter {
+            font-size: 4rem;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.75rem;
+            margin-top: 0.2rem;
+            color: #991b1b;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-ticker {
+            animation: ticker 25s linear infinite;
+        }
+        .stamp-approved {
+            border: 3px solid #991b1b;
+            color: #991b1b;
+            transform: rotate(-5deg);
+            padding: 0.25rem 0.5rem;
+            font-weight: 900;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 font-sans selection:bg-[#39ADFD]/30 selection:text-slate-900">
+
+    <!-- Dictatorship Warning Pop-up -->
+    <div id="state-warning-modal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/80 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-slate-50 border-4 border-[#39ADFD] max-w-lg w-[90%] p-8 shadow-2xl text-center relative">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#39ADFD] text-slate-900 px-4 py-1 font-display font-black tracking-widest uppercase text-sm border-2 border-black whitespace-nowrap">
+                Alerta del Sistema
+            </div>
+            
+            <svg class="w-16 h-16 text-[#991b1b] mx-auto mb-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            
+            <h2 class="font-display text-3xl font-black text-slate-900 uppercase mb-4 leading-tight">
+                Acceso Prohibido
+            </h2>
+            
+            <p class="text-slate-800 font-bold mb-6 text-sm leading-relaxed">
+                La lectura de este artículo ha sido <span class="text-[#991b1b] uppercase">estrictamente prohibida</span> por el Ministerio de la Verdad. 
+                <br><br>
+                Su ID de red ciudadana (8492-B) ha sido registrada. Permanezca en su ubicación; las autoridades se pondrán en contacto con usted en breve. 
+            </p>
+             <br><br>
+                <span class="text-[#991b1b] font-black uppercase tracking-widest">One nation. One bear. One truth.</span>
+            </p>
+            
+            <button onclick="closeWarningModal()" class="w-full bg-[#39ADFD] hover:bg-[#1d8fe8] text-slate-900 font-display font-black uppercase tracking-widest py-3 px-4 transition-colors duration-300 border-2 border-transparent hover:border-black">
+                Acato la orden
+            </button>
+        </div>
+    </div>
+
+    <!-- Top Navigation / UI Bar -->
+    <nav class="border-b-2 editorial-border py-3 px-4 md:px-8 text-xs font-bold text-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 bg-white sticky top-0 z-50 font-display tracking-widest uppercase">
+        <div class="flex gap-6 items-center">
+            <span class="text-[#39ADFD] font-black flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#39ADFD] animate-pulse"></span>
+                ID CIUDADANO: 8492-B
+            </span>
+            <span id="current-date">Jueves, 6 de Noviembre</span>
+            <span id="future-clock" class="text-slate-500 tabular-nums">00:00:00</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="text-[#991b1b]">LEALTAD: DESOBEDIENTE</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <label class="text-slate-500">Monitoreo Ocular</label>
+                <input type="checkbox" checked disabled class="tech-toggle cursor-not-allowed">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Propaganda Ticker -->
+    <div class="bg-[#39ADFD] text-white overflow-hidden py-1 border-b editorial-border text-[10px] font-display uppercase tracking-widest flex items-center">
+        <div class="whitespace-nowrap animate-ticker w-full">
+            <span class="mx-4 text-slate-900 font-black">///</span> EL TOQUE DE QUEDA INICIA A LAS 20:00 HORAS <span class="mx-4 text-slate-900 font-black">///</span> REPORTE CUALQUIER ACTIVIDAD SOSPECHOSA AL MINISTERIO DEL ORDEN <span class="mx-4 text-slate-900 font-black">///</span> Sonríe. Waldo te está mirando. <span class="mx-4 text-slate-900 font-black">///</span> El pasado era aburrido. El presente es Waldo. <span class="mx-4 text-slate-900 font-black">///</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center relative">
+        
+        <!-- Contenedor Flex para alinear logos y título -->
+        <div class="flex items-center justify-center gap-4 md:gap-8 mb-2">
+            
+            <!-- Logo Izquierdo -->
+            <img src="https://i.imgur.com/I9ksjJh.png" class="w-12 h-12 md:w-20 md:h-20 mix-blend-multiply" alt="Sello Izquierdo">
+            
+            <h1 class="font-display text-5xl md:text-8xl font-black tracking-tighter text-slate-900 uppercase">
+                The London Watch
+            </h1>
+
+            <!-- Logo Derecho -->
+            <img src="https://i.imgur.com/I9ksjJh.png" class="w-12 h-12 md:w-20 md:h-20 mix-blend-multiply" alt="Sello Derecho">
+            
+        </div>
+        
+        <p class="font-display text-xl md:text-2xl font-bold tracking-widest text-[#39ADFD] uppercase mb-6">
+            No politicians. No questions. Only Waldo.
+        </p>
+        
+        <div class="w-full border-t-2 border-b-2 editorial-border py-2 flex flex-wrap justify-between text-xs md:text-sm uppercase tracking-widest font-display text-slate-900 font-bold">
+            <span>Columna de opinión</span>
+            <span class="text-[#991b1b]">25 de Febrero del 2013</span>
+            <span>London, United Kingdom</span>
+        </div>
+        
+    </header>
+
+    <!-- Main Editorial Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-0 border-t-2 border-l-2 editorial-border bg-slate-50">
+            
+            <!-- Main Article (Expande a 9 columnas) -->
+            <article class="md:col-span-9 border-r-2 border-b-2 md:border-b-0 editorial-border p-6 md:p-10 article-card">
+                <div class="mb-4 flex justify-between items-start">
+                    <span class="text-xs font-display uppercase tracking-widest bg-[#39ADFD] text-white border-2 border-black px-3 py-1 font-black">Surgimiento de un nuevo orden - Waldo</span>
+                    <div class="stamp-approved text-xs md:text-sm">Eliminar de forma<br>INMEDIATA</div>
+                </div>
+                
+                <h2 class="font-display text-4xl md:text-6xl font-black mb-4 leading-none text-center text-slate-900 uppercase">
+                    El Fenómeno Waldo
+                </h2>
+                
+                <div class="block text-center text-xs text-slate-700 mb-6 font-display font-bold uppercase tracking-wider">
+                    <span>Redactado por</span>
+                </div>
+                
+                <div class="flex justify-center items-center flex-wrap gap-3 text-xs text-[#991b1b] mb-8 font-display font-bold uppercase tracking-wider border-b-2 editorial-border pb-6">
+                    <span>Cortes M<span class="bg-black text-black select-none" title="Contenido Censurado">adeline</span></span>
+                    <span class="hidden sm:inline">/</span>
+                    <span>Corzo S<span class="bg-black text-black select-none" title="Contenido Censurado">ara</span></span>
+                    <span class="hidden sm:inline">/</span>
+                    <span>Cuellar A<span class="bg-black text-black select-none" title="Contenido Censurado">ngello</span></span>
+                    <span class="hidden sm:inline">/</span>
+                    <span>Iguarán M<span class="bg-black text-black select-none" title="Contenido Censurado">ariangel</span></span>
+                </div>
+                
+                <!-- Main Image 1 -->
+                <div class="mb-8 normal-case max-w-4xl mx-auto">
+                    <div class="w-full aspect-video bg-black flex items-center justify-center relative overflow-hidden border-2 editorial-border p-1">
+                        <img src="https://i.imgur.com/9yM0PtJ.png" class="absolute inset-0 w-full h-full object-cover" alt="Debate político con Waldo">
+                    </div>
+                    <p class="mt-2 text-xs text-center text-slate-600 font-serif italic">Debate entre los cuatro candidatos, incluyendo a Waldo. Foto: John Doe/BBC</p>
+                </div>
+
+                <!-- Text Section 1 (1 Column) -->
+                <div class="text-sm md:text-base leading-relaxed text-slate-800 space-y-6 font-medium normal-case text-justify mb-8 max-w-4xl mx-auto">
+                    <p class="first-letter-drop">
+                        En dos semanas, se presentarán elecciones parciales en la circunscripción de <strong>Stentonford y Hersham</strong> para la Casa de Los Comunes. Esto ocurre tras la bochornosa salida del parlamentario Jason Gladwell envuelta en escándalos sexuales.
+                    </p>
+                    <p>
+                        En la lista de candidatos encontramos, por parte del Partido Conservador a Liam Monroe, del Partido Laborista se encuentra la poco conocida Gwendolyn Harris y como representante del Partido Liberal Demócrata tenemos a Connor Simpson.
+                    </p>
+                    <p>
+                        Cuando ya creíamos que el terreno estaba cantado para el candidato del partido conservador quien lideraba las cifras en las encuestas, un <strong>nuevo actor independiente</strong> entró en esta contienda de una forma un tanto cómica, la conocida caricatura de un oso azul que lleva por nombre, <strong>Waldo.</strong> 
+                    </p>
+                    <p>
+                        <strong>Waldo</strong> es una popular caricatura para adultos que realizó su primera aparición en el programa de televisión <strong>“Tonight For One Week Only”</strong> dirigido por Jack Napier y Jaimie Salter quien le da voz y “vida”. Actualmente ha venido ganando popularidad en redes sociales y portales digitales gracias a la <strong>entrevista</strong> realizada por este al candidato conservador en uno de los recientes episodios del programa televisivo en donde desarrolla una peculiar expresión de un humor negro, cargado de vulgaridad y que resulta sorprendentemente provocador al momento de realizar preguntas al invitado.
+                    </p>
+                    <p>
+                        Es por esto que esta candidatura <strong>levanta las alarmas</strong> en cierta parte de los electores a quienes les preocupa el populismo que representa, con carencia de propuestas concretas que defiendan o ataquen un problema en específico, convirtiéndose en un ente vacío que solo gana adeptos por la comicidad y lo fácil que parece digerir su planeamiento, llevándonos a cuestionar qué proyecto político se encuentra detrás de este circo.
+                    </p>
+
+                    <h3 class="font-display text-xl font-black mt-10 mb-4 text-left text-slate-900 uppercase">El voto del descontento: El peligroso atractivo del candidato vacío</h3>
+                    
+                    <p>
+                        Por otro lado, encontramos otro sector de los electores quiénes parecen estar cansados de la política tradicional y buscan salida por medio de un outsider, que promete ser lo nuevo y el cambio, <strong>encontrando su voz en Waldo</strong>; el cual declaró recientemente en contra de Monroe afirmando que a este solo le importaba su burbuja y que era netamente una imagen al evidenciar su relación con Gladwell y sus nulas declaraciones frente al escándalo sexual de este. También, arremetió contra Harris indicando que estas elecciones no eran más que un trampolín en su carrera política y que realmente poco le importaba la gente al ver su candidatura como un logro profesional y no como un apoyo al pueblo.
+                    </p>
+                </div>
+
+                <!-- Main Image 2 -->
+                <div class="my-10 normal-case max-w-4xl mx-auto">
+                    <div class="w-full aspect-video bg-black flex items-center justify-center relative overflow-hidden border-2 editorial-border p-1">
+                        <img src="https://i.imgur.com/14skIx4.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Waldo en un mitin">
+                    </div>
+                    <p class="mt-2 text-xs text-center text-slate-600 font-serif italic">Waldo en un mitín político, retando a su oponente conservador, Liam Monroe. Foto: Jane Parker/BBC</p>
+                </div>
+      
+                <!-- Text Section 2 (1 Column) -->
+                <div class="text-sm md:text-base leading-relaxed text-slate-800 space-y-6 font-medium normal-case text-justify max-w-4xl mx-auto">
+                    <p>
+                        Como lo plantean Steven Levitsky y Daniel Ziblat, en su libro “Cómo mueren las democracias”:  
+                    </p>
+                    <blockquote class="font-display text-sm md:text-base my-6 pl-4 border-l-4 border-[#991b1b] text-black font-black italic">
+                        “El destino de un Gobierno se encuentra en manos de su ciudadanía. Mientras las personas tengan valores democráticos, la democracia estará protegida. En cambio, si la ciudadanía está dispuesta a responder a llamamientos autoritarios, antes o después la democracia estará en peligro.”
+                    </blockquote>
+                    <p>
+                        Por lo que planteamos la posibilidad de que <strong>la democracia se encuentre en una crisis</strong>, aparentemente la carrera por la elección no está dirigida por la persona que mejores propuestas tenga, sino que esta vez todo está dirigido por la persona que más ruido haga y que mayor acoso social pueda lograr en contra del “rival”.
+                    </p>
+
+                    <h3 class="font-display text-xl font-black mt-10 mb-4 text-left text-slate-900 uppercase">El peso de la historia: De la Carta Magna al circo electoral</h3>
+                    
+                    <p>
+                        Nuestra célebre y gloriosa nación, Reino Unido, es de los pocos países que no cuenta con una constitución, y sin embargo fue en nuestra tierra donde se sembraron las semillas para estas; tal parece que no es el té nuestro único aporte al mundo, <strong>la Carta Magna</strong> aún después de siglos de su creación sigue siendo citada por múltiples autores como Jaramillo J. F.; Villegas M. G.; Villabona A. R. y Uprimny R. en su libro “El Derecho Frente Al Poder”, los cuales analizan justamente nuestra Carta Magna “… se trata de entonces un contrato celebrado entre los protagonistas de las sociedad medieval inglesa, cuyo objetivo principal era la determinación y la garantía de tales privilegios” sin embargo al mismo tiempo se convirtió en un escrito, que como lo dice nuestro propio parlamento “se plasmó por escrito el principio de que el rey y su gobierno no estaban por encima de la ley”.
+                    </p>    
+
+                    <p>
+                        La anterior idea fue reforzada por el profesor Uprimny en mis años universitarios:
+                    </p>  
+                    <blockquote class="font-display text-sm md:text-base my-6 pl-4 border-l-4 border-[#991b1b] text-black font-black italic">
+                        “…la carta magna puede ser una herramienta de lucha contra el absolutismo de la cual con el paso del tiempo se comenzó a desarrollar un parlamento que en una primera fase buscaba la protección de sus derechos para terminar de conformarse como un contra peso a los poderes absolutistas que marcaron nuestra historia”
+                    </blockquote>
+
+                    <h3 class="font-display text-xl font-black mt-10 mb-4 text-left text-slate-900 uppercase">Espectáculo en el atril: Humillación y aplausos en el debate público</h3>
+                    
+                    <p>
+                        Tal como afirma Oliver Wendell “la mejor prueba de la verdad es el poder del pensamiento para ser aceptado en la competencia del mercado de las ideas”, es decir, la verdad de una idea no se demuestra mediante la imposición o la censura, sino a través de su capacidad para sobrevivir y convencer en una competencia libre y abierta frente a otras ideas. La política y la forma en la que la entendemos parece girar de forma abrupta con la llegada de Waldo y nos pone a pensarnos si a partir de este momento comenzaremos a entender la política como un chiste y si las problemáticas también serán tomadas de esta forma; es por esto que nos parece totalmente válido preguntar si de verdad creemos que Waldo podría llegar a ser una representación del pueblo y lograr crear un contra peso en su ejercicio en el parlamento o solo será un títere más de fácil manipulación que llene el recinto con chistes sin sentido y propuestas vacías que realmente minimizan los problemas que vivimos hoy en día. 
+                    </p>
+                </div>
+            </article>
+
+            <!-- Right Column: Absorbs Left Column (3 cols) -->
+            <aside class="md:col-span-3 flex flex-col">
+                
+                <!-- Doctrina Legal -->
+                <article class="border-b-2 editorial-border p-5 article-card flex-1 bg-slate-100">
+                    <div class="mb-4">
+                        <span class="text-[10px] uppercase tracking-widest text-[#39ADFD] font-black font-display border-b-2 border-[#39ADFD] pb-1">Elecciones parciales</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-black mb-3 leading-tight text-slate-900 uppercase">
+                        Liam Monroe exige a la comisión electoral prohibir las "pantallas móviles" en sus mítines
+                    </h3>
+                    <p class="text-xs text-slate-900 font-bold mb-4 font-display">Por <span class="bg-black text-black select-none" aria-hidden="true" title="Contenido Censurado">Comité de Observación</span> Electoral</p>
+                    <p class="text-sm leading-relaxed text-slate-700 flex-grow text-justify">
+                        El candidato conservador, Liam Monroe, ha presentado una queja formal ante las autoridades electorales tras ser interrumpido por tercera vez esta semana. Una furgoneta equipada con una pantalla gigante transmitió a Waldo lanzando <span class="bg-black text-black select-none" aria-hidden="true" title="Contenido Censurado">insultos y haciendo gestos obscenos</span>. mientras Monroe intentaba explicar su plan de impuestos locales. "Es imposible tener un debate democrático serio cuando un dibujo animado te lanza <span class="bg-black text-black select-none" aria-hidden="true" title="Contenido Censurado">bromas de patio de colegio desde un camión</span>", declaró el candidato visiblemente frustrado. 
+                    </p>
+                </article>
+                <figure class="mx-3 my-4">
+                    <img src="https://i.imgur.com/V8G38o9.jpeg" class="block w-full h-auto border-2 editorial-border" alt="Vote Waldo">
+                </figure>
+
+                <article class="border-b-2 editorial-border p-5 article-card flex-1 bg-slate-100">
+                    <div class="mb-4">
+                        <span class="text-[10px] uppercase tracking-widest text-[#39ADFD] font-black font-display border-b-2 border-[#39ADFD] pb-1">Política</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-black mb-3 leading-tight text-slate-900 uppercase">
+                        El fantasma de Jason Gladwell sigue acechando al Partido Conservador
+                    </h3>
+                    <p class="text-xs text-slate-900 font-bold mb-4 font-display">Por J<span class="bg-black text-black select-none" aria-hidden="true" title="Contenido Censurado">ason</span> S<span class="bg-black text-black select-none" aria-hidden="true" title="Contenido Censurado">mith</span></p>
+                    <p class="text-sm leading-relaxed text-slate-700 flex-grow text-justify">
+                        A dos semanas de las elecciones, el escándalo sexual que provocó la dimisión del ex parlamentario Jason Gladwell se niega a desaparecer. Un portal de internet anónimo amenazó ayer con publicar imágenes inéditas del bochornoso incidente si no se alcanza una meta de donaciones en criptomonedas. La sede del <span class="bg-black text-black select-none" aria-hidden="true" title="Contenido Censurado">Partido Conservador</span> ha emitido un comunicado de emergencia intentando, una vez más, desvincular a Liam Monroe de los "errores personales" de su predecesor.
+                    </p>
+                </article>
+                
+                <!-- ESPACIO PUBLICITARIO -->
+                <article class="border-b-2 editorial-border p-5 article-card flex-1">
+                    <div class="mb-3">
+                        <span class="text-[10px] uppercase tracking-widest text-slate-900 font-black font-display border-b-2 border-slate-900 pb-1">ESPACIO PUBLICITARIO - SONY COMPUTER ENTERTAINMENT UK</span>
+                    </div>
+                    <h3 class="font-display text-xl font-black mb-2 leading-snug text-slate-900 uppercase">
+                       LA ESPERA HA TERMINADO. ESTO ES PARA LOS JUGADORES.
+                    </h3>
+                    <p class="text-xs font-bold text-slate-700 mb-4 text-justify">
+                        Bienvenido a la nueva generación del entretenimiento. Bienvenido a mundos más grandes, gráficos hiperrealistas a 1080p y experiencias que desafiarán todo lo que creías posible en la sala de tu casa.
+                    </p>
+                    <p class="text-xs font-bold text-slate-700 mb-4 text-justify">
+                       El futuro de los videojuegos comienza esta medianoche. ¿Estás listo? PLAYSTATION 4 YA DISPONIBLE EN TODO EL REINO UNIDO. Solo £349. Greatness Awaits.
+                    </p>
+                    <span class="text-[10px] font-display font-black uppercase tracking-wider text-[#39ADFD] flex items-center gap-1">
+                        Compra la tuya aquí <span class="text-lg leading-none">›</span>
+                    </span>
+                </article>
+                <figure class="mx-3 mt-1 mb-2">
+                    <img src="https://i.imgur.com/591uRUJ.png" class="block w-full h-auto border-2 editorial-border" alt="Anuncio de PlayStation 4">
+                </figure>
+                <hr class="border-t-2 editorial-border mx-3">
+
+                <!-- Deportes -->
+                <article class="p-5 article-card flex-1 bg-[#39ADFD]/10">
+                    <div class="mb-3">
+                        <span class="text-[10px] uppercase tracking-widest text-[#39ADFD] font-black font-display border-b-2 border-[#39ADFD] pb-1">Deportes</span>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="border-b-2 editorial-border pb-3 last:border-0">
+                            <h4 class="font-display font-black text-slate-900 text-sm mb-1 uppercase">Adiós a Sir Alex</h4>
+                            <p class="text-[11px] text-slate-700 font-bold">Deja al Manchester United hoy.</p>
+                        </li>
+                        <li class="border-b-2 editorial-border pb-3 last:border-0">
+                            <h4 class="font-display font-black text-slate-900 text-sm mb-1 uppercase">Bayern, rey de Europa </h4>
+                            <p class="text-[11px] text-slate-700 font-bold">Vencieron al Dortmund en Wembley.</p>
+                        </li>
+                        <li class="border-b-2 editorial-border pb-3 last:border-0">
+                            <h4 class="font-display font-black text-slate-900 text-sm mb-1 uppercase">Bale ficha por el Real Madrid</h4>
+                            <p class="text-[11px] text-slate-700 font-bold">Traspaso récord de cien millones.</p>
+                        </li>
+                        <li class="border-b-2 editorial-border pb-3 last:border-0">
+                            <h4 class="font-display font-black text-slate-900 text-sm mb-1 uppercase">Beckham cuelga las botas</h4>
+                            <p class="text-[11px] text-slate-700 font-bold">Se despide en París hoy.</p>
+                        </li>
+                        <li class="border-b-2 editorial-border pb-3 last:border-0">
+                            <h4 class="font-display font-black text-slate-900 text-sm mb-1 uppercase">Özil llega al Arsenal</h4>
+                            <p class="text-[11px] text-slate-700 font-bold">Fichaje sorpresa en el Emirates.</p>
+                        </li>
+                    </ul>
+                </article>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t-4 editorial-border pb-12 font-display bg-black text-white">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold uppercase tracking-wider">
+            <p>&copy; 2050 MINISTERIO DE INFORMACIÓN. Un solo oso, una sola voz, una nación perfecta.</p>
+            <div class="flex gap-6">
+                <span class="text-[#39ADFD]">MONITOREO ACTIVO</span>
+                <span class="text-[#39ADFD]">ID DE RED RASTREADA</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts (Reloj y Pop-up) -->
+    <script>
+        // Lógica del Reloj Futurista
+        function updateClock() {
+            const now = new Date();
+            const futureDate = new Date(now);
+            futureDate.setFullYear(2050);
+            
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = futureDate.toLocaleDateString('es-ES', options);
+            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('current-date').textContent = formattedDate;
+            document.getElementById('future-clock').textContent = `${hours}:${minutes}:${seconds} TST`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Lógica del Pop-up de Advertencia
+        function closeWarningModal() {
+            const modal = document.getElementById('state-warning-modal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
